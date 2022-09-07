@@ -4,13 +4,9 @@ interface Instruction {
     fun binary(): String
 }
 
-class AInstruction(addressString: String) : Instruction {
+class AInstruction(private val address: Int) : Instruction {
 
-    private val address: Int
-
-    init {
-       address = parseAddress(addressString)
-    }
+    constructor(addressString: String): this(parseAddress(addressString))
 
     override fun binary() = "0${address.toString(2).padStart(15, '0')}"
 
